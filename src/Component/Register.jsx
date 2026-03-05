@@ -37,7 +37,7 @@ function Register() {
             }
 
             let res = await axios.post(`${back_URL}/api/user`, newUser)
-            // console.log(res.data);
+
             alert(res.data.message)
             setFormData({
                 name: "",
@@ -48,7 +48,7 @@ function Register() {
 
             navigate("/user")
         } catch (error) {
-            console.log(error);
+            alert("registration failed try again")
         }
 
 

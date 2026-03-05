@@ -99,11 +99,11 @@ function Table() {
         }
         try {
             const token = localStorage.getItem("token");
-            console.log("[handleDelete] token:", token);
+
             const res = await axios.delete(`${back_URL}/api/user/${id}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
-            console.log("[handleDelete] success:", res.data);
+
             alert(`${username} deleted`);
             fetchData();
         } catch (error) {
@@ -119,7 +119,7 @@ function Table() {
     };
 
     const handleEditClick = (user) => {
-        console.log("[handleEditClick] user._id:", user._id, "loggedInUserId:", loggedInUserId);
+
         if (user._id !== loggedInUserId) {
             alert("You can only edit your own profile");
             return;
@@ -136,27 +136,27 @@ function Table() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("[handleSubmit] selectedUserId:", selectedUserId, "loggedInUserId:", loggedInUserId);
+
         if (!selectedUserId || selectedUserId !== loggedInUserId) {
             alert("Unauthorized update attempt");
             return;
         }
         try {
             const token = localStorage.getItem("token");
-            console.log("[handleSubmit] token:", token);
+
             const res = await axios.put(
                 `${back_URL}/api/user/${selectedUserId}`,
                 updateUser,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
-            console.log("[handleSubmit] success:", res.data);
+
             alert("User updated");
             setIsModalOpen(false);
             setUpdateUser({ username: "", email: "", mobile: "" });
             setSelectedUserId(null);
             fetchData();
         } catch (error) {
-            console.error("[handleSubmit] error:", error.response?.data || error.message);
+
             const status = error.response?.status;
             if (status === 401 || status === 403) {
                 alert("Unauthorized. Please login again.");
