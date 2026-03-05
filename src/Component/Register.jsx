@@ -36,7 +36,7 @@ function Register() {
                 password: formData.password
             }
 
-            let res = await axios.post(`${back_URL}/api/user/`, newUser)
+            let res = await axios.post(`${back_URL}/api/user`, newUser)
             // console.log(res.data);
             alert(res.data.message)
             setFormData({
